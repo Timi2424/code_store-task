@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { HttpModule } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
+import { TmdbModule } from './tmdb/tmdb.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    HttpModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    TmdbModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
