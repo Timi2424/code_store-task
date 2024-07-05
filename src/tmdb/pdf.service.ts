@@ -1,27 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import axios from 'axios';
-import { ConfigService } from '@nestjs/config';
+import { Movie } from 'src/types/movie.interface';
+
 
 @Injectable()
 export class PdfService {
-    private readonly PORT: number;
 
-  constructor(
-    private readonly configService: ConfigService,
-  ) {
-    this.PORT = this.configService.get<number>('PORT') | 3000;
-  }
-
-    async generatePopularMoviesPdf(movies: any[]): Promise<Buffer> {
-        const baseRedirectUrl = `http://localhost:${this.PORT}/movies`;
+    async generatePopularMoviesPdf(movies: Movie[]): Promise<Buffer> {
+        const baseRedirectUrl = `/movies`;
         const pdfDoc = await PDFDocument.create();
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
 
         let page = pdfDoc.addPage();
         const { width, height } = page.getSize();
         const fontSize = 12;
-        const margin = 50;
+        const margin = 40;
         let yPosition = height - margin;
 
         const fontHeight = timesRomanFont.heightAtSize(fontSize)
@@ -83,7 +77,7 @@ export class PdfService {
         return Buffer.from(pdfBytes);
     }
 
-    async generateMovieDetailsPdf(movie: any): Promise<Buffer> {
+    async generateMovieDetailsPdf(movie: Movie): Promise<Buffer> {
         const pdfDoc = await PDFDocument.create();
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
 
