@@ -34,7 +34,7 @@ TMDB_API_READ_ACCESS_TOKEN=your_api_read_access_token_here
 ### Installation
 
 1. Clone the repository:
-git clone https://github.com/Timi2424/code-store-backend-task.git
+git clone https://github.com/Timi2424/code_store-task.git
 
 2. Navigate to the project directory:
 cd code-store-backend-task
