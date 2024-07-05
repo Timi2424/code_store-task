@@ -1,73 +1,56 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Code.Store Backend Task
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Welcome to the Code.Store Backend Task application. This project demonstrates the implementation of a backend service using NestJS to interact with the TMDB (The Movie Database) API. The application fetches popular movies and movie details, and generates PDF documents with this data.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- Fetch popular movies from TMDB.
+- Fetch detailed information about a specific movie.
+- Generate PDF documents containing movie information.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Getting Started
 
-## Installation
+### Prerequisites
 
-```bash
-$ npm install
-```
+- Node.js (version 14.x or later)
+- npm (version 6.x or later)
+- TMDB API Key and API Read Access Token
 
-## Running the app
+### TMDB API Key and API Read Access Token
 
-```bash
-# development
-$ npm run start
+To use the TMDB API, you need to register and obtain an API key and an API Read Access Token.
 
-# watch mode
-$ npm run start:dev
+1. Go to the [TMDB website](https://www.themoviedb.org/).
+2. Sign up for an account.
+3. Navigate to the API section in your account settings.
+4. Create an API key and generate an API Read Access Token.
 
-# production mode
-$ npm run start:prod
-```
+### Environment Variables
 
-## Test
+Create a `.env` file in the root of your project directory and add the following:
 
-```bash
-# unit tests
-$ npm run test
+TMDB_API_READ_ACCESS_TOKEN=your_api_read_access_token_here
 
-# e2e tests
-$ npm run test:e2e
+### Installation
 
-# test coverage
-$ npm run test:cov
-```
+1. Clone the repository:
+git clone https://github.com/Timi2424/code-store-backend-task.git
 
-## Support
+2. Navigate to the project directory:
+cd code-store-backend-task
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+3. Install the dependencies:
+npm install
 
-## Stay in touch
+4. Start the application:
+npm run start
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+The application will run on http://localhost:3000.
 
-## License
+### Endpoints
 
-Nest is [MIT licensed](LICENSE).
+- GET /movies - Generates a PDF of popular movies.
+- GET /movies/:{id} - Generates a PDF of a specific movie's details
+
+### Thank You
+Thank you to the recruitment team at Code.Store for considering my application. I look forward to the opportunity to discuss how I can contribute to your team.
