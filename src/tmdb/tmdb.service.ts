@@ -5,14 +5,17 @@ import { Movie, PopularMoviesResponse } from 'src/types/movie.interface';
 
 @Injectable()
 export class TmdbService {
-  private readonly TMDB_API_READ_ACCESS_TOKEN: string;
-  private readonly TMDB_URL: string
+  private get TMDB_API_READ_ACCESS_TOKEN(): string {
+    return this.configService.get<string>('TMDB_API_READ_ACCESS_TOKEN');
+  }
+
+  private get TMDB_URL(): string {
+    return 'https://api.themoviedb.org/3';
+  }
+
   constructor(
     private readonly configService: ConfigService,
-  ) {
-    this.TMDB_API_READ_ACCESS_TOKEN = this.configService.get<string>('TMDB_API_READ_ACCESS_TOKEN');
-    this.TMDB_URL = 'https://api.themoviedb.org/3'
-  }
+  ) {}
 
   private getHeaders() {
     return {
