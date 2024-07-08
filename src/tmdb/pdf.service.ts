@@ -12,18 +12,19 @@ export class PdfService {
         const pdfDoc = await PDFDocument.create();
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
 
+        const FONT_SIZE = 12;
+        const MARGIN = 40;
+
         let page = pdfDoc.addPage();
         const { width, height } = page.getSize();
-        const fontSize = 12;
-        const margin = 40;
-        let yPosition = height - margin;
+        let yPosition = height - MARGIN;
 
-        const fontHeight = timesRomanFont.heightAtSize(fontSize)
+        const fontHeight = timesRomanFont.heightAtSize(FONT_SIZE)
 
         for (const movie of movies) {
-            if (yPosition < margin) {
+            if (yPosition < MARGIN) {
                 page = pdfDoc.addPage();
-                yPosition = height - margin;
+                yPosition = height - MARGIN;
             }
 
             const titleText = `${movie.title}`;
@@ -35,7 +36,7 @@ export class PdfService {
                 page.doc.context.obj({
                     Type: 'Annot',
                     Subtype: 'Link',
-                    Rect: [margin, yPosition + fontSize, width - 2 * margin, 2],
+                    Rect: [MARGIN, yPosition + FONT_SIZE, width - 2 * MARGIN, 2],
                     A: {
                         Type: 'Action',
                         S: 'URI',
@@ -47,30 +48,30 @@ export class PdfService {
             page.node.addAnnot(linkAnnotation);
 
             page.drawText(titleText, {
-                x: margin,
+                x: MARGIN,
                 y: yPosition,
-                size: fontSize,
+                size: FONT_SIZE,
                 font: timesRomanFont,
                 color: rgb(0, 0, 1),
             });
 
             page.drawText(releaseDateText, {
-                x: margin,
+                x: MARGIN,
                 y: yPosition - fontHeight - 5,
-                size: fontSize,
+                size: FONT_SIZE,
                 font: timesRomanFont,
                 color: rgb(0, 0, 0),
             });
 
             page.drawText(voteAverageText, {
-                x: margin,
+                x: MARGIN,
                 y: yPosition - fontHeight * 2 - 10,
-                size: fontSize,
+                size: FONT_SIZE,
                 font: timesRomanFont,
                 color: rgb(0, 0, 0),
             });
 
-            yPosition -= fontHeight * 3 + margin;
+            yPosition -= fontHeight * 3 + MARGIN;
         }
 
         const pdfBytes = await pdfDoc.save();
@@ -80,25 +81,26 @@ export class PdfService {
     async generateMovieDetailsPdf(movie: Movie): Promise<Buffer> {
         const pdfDoc = await PDFDocument.create();
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+        
+        const FONT_SIZE = 12;
+        const MARGIN = 40;
 
         const page = pdfDoc.addPage();
         const { width, height } = page.getSize();
-        const fontSize = 12;
-        const margin = 40;
-        let yPosition = height - margin;
+        let yPosition = height - MARGIN;
 
-        const fontHeight = timesRomanFont.heightAtSize(fontSize)
+        const fontHeight = timesRomanFont.heightAtSize(FONT_SIZE)
 
         const movieDetails = `${movie.title}\nRelease Date: ${movie.release_date}\nVote Average: ${movie.vote_average}\n\n`;
         page.drawText(movieDetails, {
-            x: margin,
+            x: MARGIN,
             y: yPosition,
-            size: fontSize,
+            size: FONT_SIZE,
             font: timesRomanFont,
             color: rgb(0, 0, 0),
         });
 
-        yPosition -= fontHeight + margin;
+        yPosition -= fontHeight + MARGIN;
 
         if (movie.poster_path) {
             const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -108,7 +110,7 @@ export class PdfService {
             const posterWidth = 200;
             const posterHeight = 300;
             page.drawImage(posterImage, {
-                x: margin,
+                x: MARGIN,
                 y: yPosition - posterHeight - 20,
                 width: posterWidth,
                 height: posterHeight,
